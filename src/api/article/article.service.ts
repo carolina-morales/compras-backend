@@ -13,7 +13,7 @@ export default class ArticleService extends AbstractService {
     return articles;
   };
 
-  save = async (article: IArticle): Promise<any> => {
+  save = async (article: IArticle): Promise<boolean> => {
     const newArticle = new Article(article);
     await newArticle.save();
     return true;
@@ -23,7 +23,8 @@ export default class ArticleService extends AbstractService {
     throw new Error("Method not implemented.");
   };
 
-  delete = async (_id: string): Promise<any> => {
-    throw new Error("Method not implemented.");
+  delete = async (_id: string): Promise<boolean> => {
+    await Article.findByIdAndDelete(_id);
+    return true;
   };
 }

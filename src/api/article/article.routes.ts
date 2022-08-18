@@ -20,5 +20,11 @@ export default class ArticleRoutes extends AbstractRoutes {
       handler: this._articleController.saveArticle,
       middlewares: [],
     },
+    {
+      path: "/:id",
+      method: Methods.DELETE,
+      handler: this._articleController.deleteArticle,
+      middlewares: [],
+    },
   ];
 }

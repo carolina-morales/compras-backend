@@ -30,6 +30,11 @@ export default class ArticleController {
   };
 
   deleteArticle = async (req: Request, res: Response): Promise<Response> => {
-    throw new Error("Method not implemented.");
+    try {
+      await this._articleService.delete(req.params.id);
+      return res.send("Article removed successfully");
+    } catch (error) {
+      return res.status(500).send("Cannot delete article: " + error);
+    }
   };
 }
