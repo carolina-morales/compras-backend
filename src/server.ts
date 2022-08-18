@@ -1,10 +1,11 @@
-import express, { json, urlencoded, Express } from 'express';
-import cors from 'cors';
-import morgan from 'morgan';
+import express, { json, urlencoded, Express } from "express";
+import cors from "cors";
+import morgan from "morgan";
 
-import { environments } from './global/config';
+import { environments } from "./global/config";
+import { connect } from "./database";
 
-import ApiRoutes from './api';
+import ApiRoutes from "./api";
 
 // initialization
 export default class Server {
@@ -18,11 +19,12 @@ export default class Server {
   }
 
   private config() {
-    this.server.set('port', environments.PORT || 3000);
+    this.server.set("port", environments.PORT || 3000);
+    connect();
   }
 
   private middlewares() {
-    this.server.use(morgan('dev'));
+    this.server.use(morgan("dev"));
     this.server.use(urlencoded({ extended: false }));
     this.server.use(cors());
     this.server.use(json());
@@ -34,14 +36,17 @@ export default class Server {
 
   public start() {
     try {
-      this.server.listen(this.server.get('port'));
-      console.log(`Server ${environments.APP_NAME} is running on port`, this.server.get('port'));
+      this.server.listen(this.server.get("port"));
+      console.log(
+        `Server ${environments.APP_NAME} is running on port`,
+        this.server.get("port")
+      );
 
-      process.on('SIGINT', function () {
+      process.on("SIGINT", function () {
         process.exit();
       });
     } catch (error) {
-      console.error('An error ocurred when the server try to start');
+      console.error("An error ocurred when the server try to start");
       process.exit(1);
     }
   }
