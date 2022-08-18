@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
+import { environments } from "./global/config";
 
 export async function connect() {
-  await mongoose.connect("mongodb://localhost:27017/test");
+  await mongoose.connect(environments.DB_URL || "");
 }

@@ -37,7 +37,10 @@ export default class Server {
 
   public start() {
     try {
-      this.server.listen(this.server.get("port"));
+      this.server.listen(
+        this.server.get("port"),
+        environments.HOST || "0.0.0.0"
+      );
       console.log(
         `Server ${environments.APP_NAME} is running on port`,
         this.server.get("port")
