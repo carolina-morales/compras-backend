@@ -21,6 +21,12 @@ export default class UserRoutes extends AbstractRoutes {
       middlewares: [],
     },
     {
+      path: "/login",
+      method: Methods.POST,
+      handler: this._userController.login,
+      middlewares: [],
+    },
+    {
       path: "/:id",
       method: Methods.PUT,
       handler: this._userController.updateUser,
