@@ -1,6 +1,7 @@
 import express, { json, urlencoded, Express } from "express";
 import cors from "cors";
 import morgan from "morgan";
+import multer from "multer";
 
 import { environments } from "./global/config";
 import { connect } from "./database";

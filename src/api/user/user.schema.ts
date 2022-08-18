@@ -12,7 +12,7 @@ const userSchema = new Schema<IUser>(
     country: { type: String, required: false },
     phone: { type: String, required: false },
     email: { type: String, required: true },
-    photo: { type: String, required: false },
+    photo: { type: Buffer, contentType: String, required: false },
   },
   {
     timestamps: true,

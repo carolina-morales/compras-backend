@@ -9,5 +9,5 @@ export interface IUser {
   country: string;
   phone: string;
   email: string;
-  photo: string;
+  photo: any;
 }

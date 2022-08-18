@@ -63,6 +63,7 @@ export default class UserController {
   updateUser = async (req: Request, res: Response): Promise<Response> => {
     try {
       const { id } = req.params;
+
       await this._userService.update(id, req.body);
       return res.send("User updated successfully");
     } catch (error) {

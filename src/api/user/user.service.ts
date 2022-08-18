@@ -6,6 +6,7 @@ export default class UserService extends AbstractService {
   find = async (user: Partial<IUser>): Promise<IUser[]> => {
     const users = User.find();
 
+    if (user._id) users.where("_id").equals(user._id);
     if (user.email) users.where("email").equals(user.email);
     if (user.username) users.where("username").equals(user.username);
 
