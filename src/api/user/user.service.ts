@@ -3,8 +3,6 @@ import { IUser } from "./user.interface";
 import { User } from "./user.schema";
 
 export default class UserService extends AbstractService {
-  private user: IUser[] = [];
-
   find = async (user: Partial<IUser>): Promise<IUser[]> => {
     const users = User.find();
 
